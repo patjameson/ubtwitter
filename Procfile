@@ -1,0 +1,1 @@
+web: gunicorn ubtwitter:app --log-file=-

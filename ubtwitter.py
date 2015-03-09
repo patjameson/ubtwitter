@@ -1,9 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route("/")
+tweets = []
+
+@app.route("/", methods=['POST', 'GET'])
 def hello():
-    return "Hello World!"
+	if request.method == 'POST':
+		tweets.append(request.form['tweet'])
+	
+	return render_template('index.html', tweets=tweets)
 
 if __name__ == "__main__":
     app.run()
